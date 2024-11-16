@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Todo List</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let task of tasks">
+      <ion-label *ngIf="editingTask?.id !== task.id">{{ task.name }}</ion-label>
+      <ion-input *ngIf="editingTask?.id === task.id" [(ngModel)]="editingTask.name"></ion-input>
+      <ion-button (click)="editTask(task)" *ngIf="editingTask?.id !== task.id" fill="clear">Edit</ion-button>
+      <ion-button (click)="updateTask()" *ngIf="editingTask?.id === task.id" fill="clear">Save</ion-button>
+      <ion-button (click)="deleteTask(task.id)" fill="clear" color="danger">Delete</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-input [(ngModel)]="newTask" placeholder="Digite sua tarefa"></ion-input>
+    <ion-button (click)="addTask()">Add Task</ion-button>
+  </ion-item>
+</ion-content>
